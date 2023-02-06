@@ -12,5 +12,11 @@ public interface EmployeeService {
 	Employee AddEmployeeDetails(Employee newEmployee);
 
 	EmployeeFirstAndLast getFirstAndLast(Integer empid);
+
+	Employee updateEmpDetails(Employee updateEmp);
+
+	String deleteEmployeeById(Integer empId);
+
+	Employee getEmployeeById(Integer empId);
 	
 }

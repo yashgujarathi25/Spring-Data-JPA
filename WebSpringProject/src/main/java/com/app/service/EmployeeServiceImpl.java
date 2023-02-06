@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.EmployeeFirstAndLast;
 import com.app.entity.Employee;
 import com.app.repository.EmployeeRepository;
@@ -40,5 +41,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return mapper.map(emp, EmployeeFirstAndLast.class);
 	}
+
+	@Override
+	public Employee updateEmpDetails(Employee updateEmp) {
+		if(empRepo.existsById(updateEmp.getId())) {
+			return empRepo.save(updateEmp);
+		}
+		throw new ResourceNotFoundException("Invaild Id...!!!");
+	}
+
+	@Override
+	public String deleteEmployeeById(Integer empId) {
+		String mesg ="Deletion Failed ..!!!!!";
+		if(empRepo.existsById(empId))
+		{
+			empRepo.deleteById(empId);
+			mesg = "Employee Deleted Successfully..!!!";
+		}
+		return mesg;
+	}
+
+	@Override
+	public Employee getEmployeeById(Integer empId) {
+		return empRepo.findById(empId).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found...!!!"));
+	}
+	
+	
 
 }
