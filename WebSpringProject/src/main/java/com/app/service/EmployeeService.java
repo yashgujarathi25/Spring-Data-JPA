@@ -18,5 +18,9 @@ public interface EmployeeService {
 	String deleteEmployeeById(Integer empId);
 
 	Employee getEmployeeById(Integer empId);
+
+	List<Employee> getEmpBySal(Double minSal, Double maxSal);
+
+	Employee authenticateEmployee(String email, String password);
 	
 }

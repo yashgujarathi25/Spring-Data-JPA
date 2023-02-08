@@ -60,4 +60,14 @@ public class EmployeeController {
 	public Employee getEmployeeById(@PathVariable Integer empId) {
 		return empSer.getEmployeeById(empId);
 	}
+	
+	@GetMapping("/{minSal}/{maxSal}")
+	public List<Employee> getEmployeeBySal(@PathVariable Double minSal, @PathVariable Double maxSal) {
+		return empSer.getEmpBySal(minSal,maxSal);
+	}
+	
+	@PostMapping("/signin/{email}/{password}")
+	public Employee loginEmployee(@PathVariable String email , @PathVariable String password) {
+		return empSer.authenticateEmployee(email,password);
+	}
 }

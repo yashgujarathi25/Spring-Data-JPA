@@ -65,6 +65,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee getEmployeeById(Integer empId) {
 		return empRepo.findById(empId).orElseThrow(()-> new ResourceNotFoundException("Employee Not Found...!!!"));
 	}
+
+	@Override
+	public List<Employee> getEmpBySal(Double minSal, Double maxSal) {
+		return empRepo.findBySalaryBetween(minSal, maxSal);
+	}
+
+	@Override
+	public Employee authenticateEmployee(String email, String password) {
+		
+		return empRepo.findByEmailAndPassword(email, password);
+	}
 	
 	
 
